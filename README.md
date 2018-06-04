@@ -1,4 +1,4 @@
-# Sugar Log README
+# Sugar Log
 The app helps keep track of sugar levels for a diabetic patient over a period of time.
 
 ## Features
