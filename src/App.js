@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import logData from './dataSource.js'
 import Header from './Header'
 import './App.css';
+import ListContainer from './ListContainer'
 
 class App extends Component {
   state = {
@@ -14,7 +16,10 @@ class App extends Component {
 
   render() {
     return (
-      <Header />
+      <React.Fragment>
+        <Header selected="log"/>
+        <ListContainer data={logData}/>
+      </React.Fragment>
     );
   }
 }

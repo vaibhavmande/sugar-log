@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 
 export default class Header extends Component {
   state = {
-    selected: 'log'
+    selected: this.props.selected
   }
 
   handleMenuClick = (event) => {
@@ -20,16 +20,16 @@ export default class Header extends Component {
         theme="dark"
       >
         <Menu.Item key="log">
-          <Icon type="mail"/>LOG
+          <Icon type="table"/>LOG
         </Menu.Item>
         <Menu.Item key="">
-          <Icon type="mail"/>GRAPH
+          <Icon type="line-chart"/>GRAPH
         </Menu.Item>
         <Menu.Item key="settings">
-          <Icon type="mail"/>SETTINGS
+          <Icon type="setting"/>SETTINGS
         </Menu.Item>
         <Menu.Item key="about">
-          <a href="https://www.github.com/vbrmnd" target="_blank" rel="noopener noreferrer">PROFILE</a>
+          <Icon type="github" />
         </Menu.Item>
       </Menu>
     );
