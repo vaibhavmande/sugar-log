@@ -1,11 +1,25 @@
 import React, { Component } from 'react'
-import TabBar from './TabBar'
+import logData from './dataSource.js'
+import Header from './Header'
 import './App.css';
+import ListContainer from './ListContainer'
 
 class App extends Component {
+  state = {
+    'dbHandle': null
+  }
+
+  componentDidMount() {
+    // check if dbHandle set, if not switch to settings and ask user to select the dbHandle
+    // search localStorage for dbHandle before switching to Settings menu
+  }
+
   render() {
     return (
-      <TabBar selected={0}/>
+      <React.Fragment>
+        <Header selected="log"/>
+        <ListContainer data={logData}/>
+      </React.Fragment>
     );
   }
 }
