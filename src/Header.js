@@ -1,8 +1,27 @@
 import React, {Component} from 'react'
-import {Menu, Icon} from 'antd'
-import 'antd/dist/antd.css';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
-export default class Header extends Component {
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
+
+class Header extends Component {
   state = {
     selected: this.props.selected
   }
@@ -12,26 +31,27 @@ export default class Header extends Component {
   }
 
   render() {
+    const {classes} = this.props
     return (
-      <Menu
-        onClick={this.handleMenuClick}
-        selectedKeys={[this.state.selected]}
-        mode="horizontal"
-        theme="dark"
-      >
-        <Menu.Item key="log">
-          <Icon type="table"/>LOG
-        </Menu.Item>
-        <Menu.Item key="">
-          <Icon type="line-chart"/>GRAPH
-        </Menu.Item>
-        <Menu.Item key="settings">
-          <Icon type="setting"/>SETTINGS
-        </Menu.Item>
-        <Menu.Item key="about">
-          <Icon type="github" />
-        </Menu.Item>
-      </Menu>
-    );
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" color="inherit" className={classes.grow}>
+              News
+            </Typography>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
+      </div> 
+    )
   }
 }
+
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Header);
