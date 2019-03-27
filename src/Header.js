@@ -23,13 +23,24 @@ const styles = {
 };
 
 class Header extends Component {
-  state = {
-    formActive: false
+
+  constructor(props) {
+    super(props)
+
+    this.state = { formActive: false }
+
+    this.showForm = this.showForm.bind(this)
+    this.hideForm = this.hideForm.bind(this)
   }
 
-  toggleAddForm = (status) => {
-    console.log(status)
-    this.setState({formActive: status})
+  showForm() {
+    console.log('show Form')
+    this.setState({formActive: true})
+  }
+
+  hideForm() {
+    console.log('hide form')
+    this.setState({formActive: false})
   }
 
   render() {
@@ -44,13 +55,13 @@ class Header extends Component {
             <Typography variant="h6" color="inherit" className={classes.grow}>
               Home
             </Typography>
-            <Button variant="outlined" color="secondary" onClick={() => this.toggleAddForm(true)}>
+            <Button variant="outlined" color="secondary" onClick={this.showForm}>
               Add
-              <AddLogForm
-                formActiveStatus={this.state.formActive}
-                toggleAddForm={this.toggleAddForm}
-              />
             </Button>
+            <AddLogForm
+                formActiveStatus={this.state.formActive}
+                hideForm={this.hideForm}
+            />
           </Toolbar>
         </AppBar>
       </div>
