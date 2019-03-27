@@ -16,8 +16,8 @@ export default class FormDialog extends React.Component {
     return (
       <div>
         <Dialog
-          open={this.handleFormOpen}
-          onClose={this.props.deactivateForm}
+          open={this.props.formActiveStatus}
+          onClose={()=>this.props.toggleAddForm(false)}
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">Add Log</DialogTitle>
@@ -36,10 +36,10 @@ export default class FormDialog extends React.Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.props.deactivateForm} color="primary">
+            <Button onClick={()=>this.props.toggleAddForm(false)} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.props.deactivateForm} color="primary">
+            <Button color="primary">
               Subscribe
             </Button>
           </DialogActions>

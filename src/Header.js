@@ -24,20 +24,12 @@ const styles = {
 
 class Header extends Component {
   state = {
-    selected: this.props.selected,
     formActive: false
   }
 
-  handleMenuClick = (event) => {
-    this.setState({selected: event.key})
-  }
-
-  activateForm = () => {
-    this.setState({formActive: true})
-  }
-
-  deactivateForm = () => {
-    this.setState({formActive: false})
+  toggleAddForm = (status) => {
+    console.log(status)
+    this.setState({formActive: status})
   }
 
   render() {
@@ -52,15 +44,16 @@ class Header extends Component {
             <Typography variant="h6" color="inherit" className={classes.grow}>
               Home
             </Typography>
-            <Button variant="outlined" color="secondary" onClick={this.activateForm}>
+            <Button variant="outlined" color="secondary" onClick={() => this.toggleAddForm(true)}>
               Add
-              {this.state.formActive && 
-                <AddLogForm deactivateForm={this.deactivateForm}/>
-              }
+              <AddLogForm
+                formActiveStatus={this.state.formActive}
+                toggleAddForm={this.toggleAddForm}
+              />
             </Button>
           </Toolbar>
         </AppBar>
-      </div> 
+      </div>
     )
   }
 }
