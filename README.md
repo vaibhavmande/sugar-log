@@ -7,3 +7,5 @@ The app helps keep track of sugar levels for a diabetic patients over a period o
 - Maintains a history of all sugar levels recorded in the past.
 - Add new entry for both fasting as well as meal.
 - View a graph of all values and identify the trend.
+
+#### Go to [develop](https://github.com/vaibhavmande/sugar-log/tree/develop 'develop branch') branch
