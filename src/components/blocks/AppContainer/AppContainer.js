@@ -10,7 +10,7 @@ const ColoredBackground = styled(FlexContainer)`
 `
 const AppContainer = () => {
   return (
-    <ColoredBackground fd="column" ai="center" jc="center" flex="1">
+    <ColoredBackground fd="column" ai="center" jc="space-between" flex="1">
       <Trend></Trend>
       <Readings></Readings>
       <Action></Action>

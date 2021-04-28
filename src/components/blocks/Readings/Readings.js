@@ -1,5 +1,5 @@
 const Readings = ({ readings }) => {
-  return 'Readings'
+  return <div style={{ flex: 1 }}>Reading</div>
 }
 
 export default Readings
