@@ -5,7 +5,7 @@ import Readings from '../Readings/Readings'
 import styled from 'styled-components'
 
 const ColoredBackground = styled(FlexContainer)`
-  background-color: #eee;
+  background-color: #ecf1ff;
 `
 const AppContainer = () => {
   return (

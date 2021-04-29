@@ -51,13 +51,13 @@ const data = [
 const GraphContainer = styled(FlexContainer)`
   flex-basis: 30%;
   width: 100%;
-  padding: 0.5rem;
-  width: '100%';
-  height: 300;
+  /* padding: 0.5rem; */
+  width: 100%;
+  height: 300px;
   box-sizing: border-box;
-  background-clip: content-box;
+  /* background-clip: content-box; */
   background-color: #576be8;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
 `
 
 const Trend = ({ readings }) => {
@@ -79,7 +79,7 @@ const Trend = ({ readings }) => {
             type="monotone"
             dataKey="uv"
             stackId="1"
-            stroke="#85def1"
+            stroke="#ffc65d"
             fill="#576be8"
             activeDot={false}
             // strokeWidth={3}
@@ -88,7 +88,7 @@ const Trend = ({ readings }) => {
             type="monotone"
             dataKey="pv"
             stackId="1"
-            stroke="#85def1"
+            stroke="#ffc65d"
             fill="#576be8"
             strokeWidth={3}
             activeDot={false}

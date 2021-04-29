@@ -3,10 +3,9 @@ import styled from 'styled-components'
 
 const Parent = styled.div`
   background-color: #f9fbff;
-  border-radius: 0.6rem;
+  border-radius: 0.4rem;
   padding: 1rem;
-  /* width: 50%; */
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
 `

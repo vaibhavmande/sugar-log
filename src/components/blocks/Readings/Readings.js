@@ -5,7 +5,7 @@ import Card from '../Card/Card'
 
 const Container = styled(FlexContainer)`
   flex-grow: 1;
-  padding: 2rem;
+  padding: 1.6rem;
   align-self: stretch;
   border: none;
   position: relative;
