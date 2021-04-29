@@ -2,7 +2,6 @@ import React from 'react'
 import FlexContainer from '../../containers/FlexContainer'
 import Trend from '../Trend/Trend'
 import Readings from '../Readings/Readings'
-import Action from '../Action/Action'
 import styled from 'styled-components'
 
 const ColoredBackground = styled(FlexContainer)`

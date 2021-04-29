@@ -7,7 +7,7 @@ const Container = styled(FlexContainer)`
   padding: 2rem;
   align-self: stretch;
   border: none;
-  background-color: wheat;
+  background-color: #c2e3ba;
   border-radius: 2rem 2rem 0 0;
   position: relative;
 `
