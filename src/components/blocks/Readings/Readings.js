@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 import Action from '../Action/Action'
 import FlexContainer from '../../containers/FlexContainer'
+import Card from '../Card/Card'
 
 const Container = styled(FlexContainer)`
   flex-grow: 1;
   padding: 2rem;
   align-self: stretch;
   border: none;
-  background-color: #c2e3ba;
-  border-radius: 2rem 2rem 0 0;
   position: relative;
 `
 const AbsoluteAction = styled(Action)`
@@ -17,10 +16,21 @@ const AbsoluteAction = styled(Action)`
   width: calc(100% - 4rem);
 `
 
+const CardContainer = styled(FlexContainer)`
+  flex: 1;
+  & > div {
+    margin: 0.6rem 0;
+  }
+`
+
 const Readings = ({ readings }) => {
   return (
     <Container fd="column" jc="space-between">
-      <span>Reading</span>
+      <CardContainer fd="column">
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+      </CardContainer>
       <AbsoluteAction />
     </Container>
   )

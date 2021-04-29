@@ -1,96 +1,101 @@
 import React from 'react'
-// import { Chart } from 'react-charts'
+import { Tooltip, AreaChart, Area, ResponsiveContainer } from 'recharts'
 import FlexContainer from '../../containers/FlexContainer'
 import styled from 'styled-components'
-import { Line } from 'react-chartjs-2'
+
+const data = [
+  {
+    name: 'Page A',
+    uv: 4000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: 'Page B',
+    uv: 3000,
+    pv: 1398,
+    amt: 2210,
+  },
+  {
+    name: 'Page C',
+    uv: 2000,
+    pv: 9800,
+    amt: 2290,
+  },
+  {
+    name: 'Page D',
+    uv: 2780,
+    pv: 3908,
+    amt: 2000,
+  },
+  {
+    name: 'Page E',
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    name: 'Page F',
+    uv: 2390,
+    pv: 3800,
+    amt: 2500,
+  },
+  {
+    name: 'Page G',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+]
 
 const GraphContainer = styled(FlexContainer)`
   flex-basis: 30%;
   width: 100%;
+  padding: 0.5rem;
+  width: '100%';
+  height: 300;
+  box-sizing: border-box;
+  background-clip: content-box;
+  background-color: #576be8;
+  border-radius: 1rem;
 `
 
 const Trend = ({ readings }) => {
-  const data = {
-    labels: ['1', '2', '3', '4', '5', '6'],
-    datasets: [
-      {
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 99, 132, 0.2)',
-        tension: 0.4,
-      },
-      {
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 99, 132, 0.2)',
-        tension: 0.2,
-      },
-    ],
-  }
-
-  const options = {
-    animations: {
-      radius: {
-        duration: 400,
-        easing: 'linear',
-        loop: (context) => context.active,
-      },
-    },
-    plugins: {
-      tooltip: {
-        enabled: false,
-      },
-      legend: {
-        display: false,
-      },
-    },
-    scales: {
-      xAxes: [
-        {
-          grid: {
-            display: false,
-          },
-          title: {
-            display: false,
-          },
-          gridLines: {
-            display: false,
-          },
-          scaleLabel: {
-            display: false,
-          },
-          ticks: {
-            display: false,
-            minRotation: 90,
-          },
-        },
-      ],
-      yAxes: [
-        {
-          scaleLabel: {
-            display: true,
-          },
-          ticks: {
-            display: false,
-            minRotation: 0,
-          },
-        },
-      ],
-    },
-  }
-
   return (
     <GraphContainer at="center" jc="center">
-      <div
-        className="chart-container"
-        style={{ padding: '2rem', width: '50%', height: '100px' }}
-      >
-        <Line data={data} options={options} />
-      </div>
+      <ResponsiveContainer>
+        <AreaChart
+          width={500}
+          height={100}
+          data={data}
+          margin={{
+            top: 10,
+            right: 0,
+            left: 0,
+            bottom: 0,
+          }}
+        >
+          <Area
+            type="monotone"
+            dataKey="uv"
+            stackId="1"
+            stroke="#85def1"
+            fill="#576be8"
+            activeDot={false}
+            // strokeWidth={3}
+          ></Area>
+          <Area
+            type="monotone"
+            dataKey="pv"
+            stackId="1"
+            stroke="#85def1"
+            fill="#576be8"
+            strokeWidth={3}
+            activeDot={false}
+          />
+          <Tooltip />
+        </AreaChart>
+      </ResponsiveContainer>
     </GraphContainer>
   )
 }
