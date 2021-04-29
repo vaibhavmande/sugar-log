@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 // import { Chart } from 'react-charts'
 import FlexContainer from '../../containers/FlexContainer'
 import styled from 'styled-components'
@@ -51,6 +51,12 @@ const Trend = ({ readings }) => {
     scales: {
       xAxes: [
         {
+          grid: {
+            display: false,
+          },
+          title: {
+            display: false,
+          },
           gridLines: {
             display: false,
           },
@@ -81,7 +87,7 @@ const Trend = ({ readings }) => {
     <GraphContainer at="center" jc="center">
       <div
         className="chart-container"
-        style={{ padding: '2rem', width: '100%', height: '100px' }}
+        style={{ padding: '2rem', width: '50%', height: '100px' }}
       >
         <Line data={data} options={options} />
       </div>

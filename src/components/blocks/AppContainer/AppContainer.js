@@ -13,7 +13,6 @@ const AppContainer = () => {
     <ColoredBackground fd="column" ai="center" jc="space-between" flex="1">
       <Trend></Trend>
       <Readings></Readings>
-      <Action></Action>
     </ColoredBackground>
   )
 }

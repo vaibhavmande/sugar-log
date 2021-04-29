@@ -1,20 +1,34 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import { styled } from '@material-ui/core/styles'
+import styled from 'styled-components'
 import FlexContainer from '../../containers/FlexContainer'
+import ControlPointIcon from '@material-ui/icons/ControlPoint'
 
-const AddFasting = styled(Button)({
-  backgroundColor: '#00adb5',
-})
-const AddPP = styled(Button)({
-  backgroundColor: '#00adb5',
-})
+const AddFasting = styled(Button)`
+  margin: 0 1rem;
+`
+
+const AddPP = styled(Button)`
+  margin: 0 1rem;
+`
 
 const Action = ({ isEnabled }) => {
   return (
     <FlexContainer ai="center" jc="center">
-      <AddFasting>Fasting</AddFasting>
-      <AddPP>PP</AddPP>
+      <AddFasting
+        variant="contained"
+        color="secondary"
+        startIcon={<ControlPointIcon />}
+      >
+        Fasting
+      </AddFasting>
+      <AddPP
+        variant="contained"
+        color="secondary"
+        startIcon={<ControlPointIcon />}
+      >
+        PP
+      </AddPP>
     </FlexContainer>
   )
 }
