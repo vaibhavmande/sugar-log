@@ -1,9 +1,10 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Slide from '@material-ui/core/Slide'
 import styled from 'styled-components'
+import TextField from '@material-ui/core/TextField'
+import AppButton from '../../elements/AppButton'
 
 const Paper = styled.div`
   background-color: #fff;
@@ -20,22 +21,32 @@ const FlexModal = styled(Modal)`
   justify-content: center;
 `
 
-const Input = styled.input`
-  background-color: none;
-  border: 1px solid;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  outline: none;
-`
 const Heading = styled.h4`
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 `
 
-export default function AddEntry({ open, setOpen }) {
-  // const [open, setOpen] = React.useState(false);
+const StyledInput = styled(TextField)`
+  margin-bottom: 2rem;
+  & .MuiOutlinedInput-root {
+    & fieldset {
+      border-color: #000;
+    }
+  }
+`
 
-  const handleOpen = () => {
-    setOpen(true)
+export default function AddEntry({ open, setOpen, type }) {
+  const helperText = (isError) =>
+    isError ? 'Incorrect entry' : `Add today's ${type ?? 'sugar'} entry`
+  const [isError, setIsError] = React.useState(false)
+  const [touched, setTouched] = React.useState(false)
+
+  const handleChange = (event) => {
+    const value = event.target.value.trim()
+    const isTouched = value.length > 0
+
+    setIsError(isTouched && !Number.isInteger(Number(value)))
+    setTouched(isTouched)
+    console.log(value, typeof value, isError, touched)
   }
 
   const handleClose = () => {
@@ -59,11 +70,22 @@ export default function AddEntry({ open, setOpen }) {
       >
         <Slide direction="up" in={open} mountOnEnter unmountOnExit>
           <Paper>
-            <Heading id="transition-modal-title">Add Entry</Heading>
-            <Input type="number" pattern="[0-9]{3}" />
-            <Button variant="outline" color="primary">
+            <Heading>Add Entry</Heading>
+            <StyledInput
+              required
+              error={isError}
+              label="Enter sugar log"
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              variant="outlined"
+              helperText={helperText(isError)}
+              onChange={handleChange}
+            />
+            <AppButton variant="contained" disabled={!touched || isError}>
               Submit
-            </Button>
+            </AppButton>
           </Paper>
         </Slide>
       </FlexModal>

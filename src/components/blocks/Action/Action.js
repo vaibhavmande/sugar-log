@@ -1,39 +1,43 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
 import styled from 'styled-components'
 import FlexContainer from '../../containers/FlexContainer'
 import ControlPointIcon from '@material-ui/icons/ControlPoint'
 import AddEntry from '../AddEntry/AddEntry'
+import AppButton from '../../elements/AppButton'
 
-const AddFasting = styled(Button)`
+const AddButton = styled(AppButton)`
   margin: 0 1rem;
 `
 
-const AddPP = styled(Button)`
-  margin: 0 1rem;
-`
-
-const Action = ({ isEnabled }) => {
+const Action = ({ isEnabled = true }) => {
   const [open, setOpen] = React.useState(false)
+  const [addFormType, setAddFormType] = React.useState(null)
+
   return (
     <FlexContainer ai="center" jc="center">
-      <AddFasting
+      <AddButton
         variant="contained"
-        color="secondary"
         startIcon={<ControlPointIcon />}
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          setAddFormType('fasting')
+          setOpen(!open)
+        }}
+        disabled={!isEnabled}
       >
         Fasting
-      </AddFasting>
-      <AddPP
+      </AddButton>
+      <AddButton
         variant="contained"
-        color="secondary"
         startIcon={<ControlPointIcon />}
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          setAddFormType('PP')
+          setOpen(!open)
+        }}
+        disabled={!isEnabled}
       >
         PP
-      </AddPP>
-      <AddEntry open={open} setOpen={setOpen} />
+      </AddButton>
+      <AddEntry open={open} setOpen={setOpen} type={addFormType} />
     </FlexContainer>
   )
 }
