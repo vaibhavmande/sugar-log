@@ -9,7 +9,7 @@ const AddButton = styled(AppButton)`
   margin: 0 1rem;
 `
 
-const Action = ({ isEnabled = true }) => {
+const Action = ({ isEnabled = true, entries, setEntries }) => {
   const [open, setOpen] = React.useState(false)
   const [addFormType, setAddFormType] = React.useState(null)
 
@@ -37,7 +37,13 @@ const Action = ({ isEnabled = true }) => {
       >
         PP
       </AddButton>
-      <AddEntry open={open} setOpen={setOpen} type={addFormType} />
+      <AddEntry
+        open={open}
+        setOpen={setOpen}
+        type={addFormType}
+        entries={entries}
+        setEntries={setEntries}
+      />
     </FlexContainer>
   )
 }

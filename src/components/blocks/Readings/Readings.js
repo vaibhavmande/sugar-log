@@ -23,7 +23,7 @@ const CardContainer = styled(FlexContainer)`
   }
 `
 
-const Readings = ({ readings }) => {
+const Readings = ({ entries, setEntries }) => {
   return (
     <Container fd="column" jc="space-between">
       <CardContainer fd="column">
@@ -31,7 +31,7 @@ const Readings = ({ readings }) => {
         <Card></Card>
         <Card></Card>
       </CardContainer>
-      <AbsoluteAction />
+      <AbsoluteAction entries={entries} setEntries={setEntries} />
     </Container>
   )
 }
