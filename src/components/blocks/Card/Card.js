@@ -1,69 +1,82 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+const READINGS_COLORS = {
+  high: 'red',
+  safe: 'green',
+  moderate: 'yellow',
+  unknown: 'whitesmoke',
+}
 
 const Parent = styled.div`
+  display: flex;
   background-color: #f9fbff;
   border-radius: 0.4rem;
-  padding: 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+`
+
+const Left = styled.div`
+  flex-basis: 60%;
+  padding: 0.8rem 0;
   display: flex;
   flex-direction: column;
-`
-const Row = styled.div`
-  display: flex;
   justify-content: space-between;
   align-items: center;
 `
-
-const Above = styled(Row)`
-  margin-bottom: 0.6rem;
+const ColorCoded = styled.div`
+  background-color: ${({ status }) =>
+    READINGS_COLORS[status] ?? READINGS_COLORS['unknown']};
 `
 
-const Risk = styled.div`
-  color: #6c6c6c;
+const Right = styled(ColorCoded)`
+  flex-grow: 1;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0.4rem 0.4rem 0;
 `
 
-const Color = styled.div`
-  border-radius: 50%;
-  background-color: green;
-  width: 1rem;
-  height: 1rem;
+const DateTime = styled.div`
+  display: flex;
+  align-items: baseline;
+`
+const withMargin = css`
+  ${({ mr }) => mr && `margin-right: ${mr}`}
+`
+const withFontSize = css`
+  ${({ fs }) => fs && `font-size: ${fs}`}
 `
 
-const ReadingText = styled.span`
-  color: #576be8;
+const Bigger = styled.div`
+  font-size: 1.2rem;
+  ${withMargin}
+`
+const Smaller = styled.div`
+  font-size: 0.8rem;
+`
+const Lighter = styled.div`
+  font-weight: lighter;
+  ${withFontSize}
+`
+const Reading = styled.div`
+  font-size: 2rem;
+  text-shadow: 2px 0 3px rgba(0, 0, 0, 0, 2);
 `
 
 const Card = ({ date, time, reading, type }) => {
   return (
     <Parent>
-      <Above>
-        <div>{date}</div>
-        <div>
-          <span
-            style={{
-              color: '#6c6c6c',
-              fontWeight: 'lighter',
-              marginRight: '0.6rem',
-            }}
-          >
-            ({type})
-          </span>
-          <span
-            style={{
-              color: '#576be8',
-              fontSize: '1.04rem',
-              fontWeight: 'bold',
-            }}
-          >
-            {reading}
-          </span>
-        </div>
-      </Above>
-      <Row className="row below">
-        <Risk className="risk">{time}</Risk>
-        <Color className="risk-color"></Color>
-      </Row>
+      <Left>
+        <DateTime>
+          <Bigger mr="0.4rem">{date}</Bigger>
+          <Smaller>{time}</Smaller>
+        </DateTime>
+        <Lighter fs="0.9rem">({type})</Lighter>
+      </Left>
+      <Right status="safe">
+        <Reading>{reading}</Reading>
+      </Right>
     </Parent>
   )
 }

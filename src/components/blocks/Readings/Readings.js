@@ -7,7 +7,6 @@ import meditate from '../../../images/meditate1.svg'
 const Container = styled(FlexContainer)`
   flex-grow: 1;
   padding: 1.6rem;
-  /* align-self: stretch; */
   border: none;
   position: relative;
   box-sizing: border-box;
@@ -33,7 +32,6 @@ const CardContainer = styled(FlexContainer)`
 const EmptyBox = styled.span`
   display: block;
   margin: 0 auto;
-  /* padding-top: 100%; */
 `
 
 const Readings = ({ entries, setEntries }) => {
