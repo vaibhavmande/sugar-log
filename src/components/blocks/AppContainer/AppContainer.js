@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FlexContainer from '../../containers/FlexContainer'
 import Trend from '../Trend/Trend'
 import Readings from '../Readings/Readings'
@@ -8,10 +8,11 @@ const ColoredBackground = styled(FlexContainer)`
   background-color: #ecf1ff;
 `
 const AppContainer = () => {
+  const [entries, setEntries] = useState([])
   return (
     <ColoredBackground fd="column" ai="center" jc="space-between" flex="1">
       <Trend></Trend>
-      <Readings></Readings>
+      <Readings entries={entries} setEntries={setEntries} />
     </ColoredBackground>
   )
 }
