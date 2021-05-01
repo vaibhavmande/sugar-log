@@ -20,8 +20,7 @@ const Above = styled(Row)`
 `
 
 const Risk = styled.div`
-  font-weight: lighter;
-  color: gray;
+  color: #6c6c6c;
 `
 
 const Color = styled.div`
@@ -31,17 +30,38 @@ const Color = styled.div`
   height: 1rem;
 `
 
-const Card = () => {
+const ReadingText = styled.span`
+  color: #576be8;
+`
+
+const Card = ({ date, time, reading, type }) => {
   return (
     <Parent>
-      <Above className="row above">
-        <div className="date" style={{ fontWeight: 'bolder' }}>
-          12/12/12
+      <Above>
+        <div>{date}</div>
+        <div>
+          <span
+            style={{
+              color: '#6c6c6c',
+              fontWeight: 'lighter',
+              marginRight: '0.6rem',
+            }}
+          >
+            ({type})
+          </span>
+          <span
+            style={{
+              color: '#576be8',
+              fontSize: '1.04rem',
+              fontWeight: 'bold',
+            }}
+          >
+            {reading}
+          </span>
         </div>
-        <div className="reading">13 / 45 gmol/dl</div>
       </Above>
       <Row className="row below">
-        <Risk className="risk">risk</Risk>
+        <Risk className="risk">{time}</Risk>
         <Color className="risk-color"></Color>
       </Row>
     </Parent>

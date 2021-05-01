@@ -2,13 +2,16 @@ import styled from 'styled-components'
 import Action from '../Action/Action'
 import FlexContainer from '../../containers/FlexContainer'
 import Card from '../Card/Card'
+import meditate from '../../../images/meditate1.svg'
 
 const Container = styled(FlexContainer)`
   flex-grow: 1;
   padding: 1.6rem;
-  align-self: stretch;
+  /* align-self: stretch; */
   border: none;
   position: relative;
+  box-sizing: border-box;
+  width: 100%;
 `
 const AbsoluteAction = styled(Action)`
   position: absolute;
@@ -21,15 +24,34 @@ const CardContainer = styled(FlexContainer)`
   & > div {
     margin: 0.6rem 0;
   }
+  ${({ length }) =>
+    length === 0 &&
+    `
+    background: url(${meditate}) no-repeat scroll center center / contain;
+  `}
+`
+const EmptyBox = styled.span`
+  display: block;
+  margin: 0 auto;
+  /* padding-top: 100%; */
 `
 
 const Readings = ({ entries, setEntries }) => {
   return (
     <Container fd="column" jc="space-between">
-      <CardContainer fd="column">
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
+      <CardContainer fd="column" length={entries.length}>
+        {entries.map((entry, index) => (
+          <Card
+            key={index}
+            date={entry.date}
+            time={entry.time}
+            reading={entry.value}
+            type={entry.type}
+          />
+        ))}
+        {entries.length === 0 && (
+          <EmptyBox>Add entries to get started.</EmptyBox>
+        )}
       </CardContainer>
       <AbsoluteAction entries={entries} setEntries={setEntries} />
     </Container>
