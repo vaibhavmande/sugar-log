@@ -5,10 +5,14 @@ import Slide from '@material-ui/core/Slide'
 import styled from 'styled-components'
 import TextField from '@material-ui/core/TextField'
 import AppButton from '../../elements/AppButton'
+import DateFnsUtils from '@date-io/date-fns'
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers'
 
 const Paper = styled.div`
   background-color: #fff;
-  /* border: 2px solid #000; */
   box-shadow: 0 4px 5px 1px rgba(0, 0, 0, 0.2);
   padding: 1rem 2rem 1.5rem;
   margin: 1rem;
@@ -33,11 +37,15 @@ const StyledInput = styled(TextField)`
     }
   }
 `
+const SpacedContainer = styled.div`
+  margin-bottom: 2rem;
+`
 
 export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
   const [isError, setIsError] = React.useState(false)
   const [touched, setTouched] = React.useState(false)
   const [formValue, setFormValue] = React.useState(null)
+  const [formDate, setFormDate] = React.useState(new Date())
 
   const helperText = (isError) =>
     isError ? 'Incorrect entry' : `Add today's ${type ?? 'sugar'} entry`
@@ -64,7 +72,7 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
 
   const handleSubmit = () => {
     if (Number.isInteger(formValue)) {
-      const now = new Date(Date.now()).toLocaleString('in').split(' ')
+      const now = formDate.toLocaleString('in').split(' ')
 
       const logEntry = {
         date: now[0],
@@ -77,6 +85,10 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
       console.error('Invalid entry', formValue)
     }
     handleClose()
+  }
+
+  const handleDateChange = (date) => {
+    setFormDate(date)
   }
 
   return (
@@ -97,6 +109,20 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
         <Slide direction="up" in={open} mountOnEnter unmountOnExit>
           <Paper>
             <Heading>Add Entry</Heading>
+            <SpacedContainer>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  margin="normal"
+                  label="Select date"
+                  format="dd/MM/yyyy"
+                  value={formDate}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'select date',
+                  }}
+                />
+              </MuiPickersUtilsProvider>
+            </SpacedContainer>
             <StyledInput
               required
               error={isError}
