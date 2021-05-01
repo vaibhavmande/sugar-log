@@ -26,6 +26,7 @@ h4 {
 
 #root {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
 }

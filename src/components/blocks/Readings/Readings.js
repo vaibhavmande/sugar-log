@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Action from '../Action/Action'
 import FlexContainer from '../../containers/FlexContainer'
 import Card from '../Card/Card'
-import meditate from '../../../images/meditate1.svg'
+import meditate from '../../../images/meditate.svg'
 
 const Container = styled(FlexContainer)`
   flex-grow: 1;
@@ -19,9 +19,16 @@ const AbsoluteAction = styled(Action)`
 `
 
 const CardContainer = styled(FlexContainer)`
-  flex: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* flex: 1; */
+  overflow: auto;
+  margin-bottom: 3.5rem;
   & > div {
-    margin: 0.6rem 0;
+    margin: 1rem;
   }
   ${({ length }) =>
     length === 0 &&
@@ -31,7 +38,7 @@ const CardContainer = styled(FlexContainer)`
 `
 const EmptyBox = styled.span`
   display: block;
-  margin: 0 auto;
+  margin: 2rem auto;
 `
 
 const Readings = ({ entries, setEntries }) => {

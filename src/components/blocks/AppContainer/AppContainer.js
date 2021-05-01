@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 const ColoredBackground = styled(FlexContainer)`
   background-color: #ecf1ff;
+  height: calc(100% - 48px);
 `
 const AppContainer = () => {
   const [entries, setEntries] = useState([])

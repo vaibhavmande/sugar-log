@@ -2,9 +2,9 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 const READINGS_COLORS = {
-  high: 'red',
-  safe: 'green',
-  moderate: 'yellow',
+  high: '#db7f7f',
+  safe: '#89d089',
+  moderate: '#dbdb81',
   unknown: 'whitesmoke',
 }
 
@@ -16,7 +16,7 @@ const Parent = styled.div`
 `
 
 const Left = styled.div`
-  flex-basis: 60%;
+  flex-basis: 70%;
   padding: 0.8rem 0;
   display: flex;
   flex-direction: column;
@@ -74,7 +74,7 @@ const Card = ({ date, time, reading, type }) => {
         </DateTime>
         <Lighter fs="0.9rem">({type})</Lighter>
       </Left>
-      <Right status="safe">
+      <Right status="moderate">
         <Reading>{reading}</Reading>
       </Right>
     </Parent>
