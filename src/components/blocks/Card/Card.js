@@ -2,10 +2,21 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 const READINGS_COLORS = {
-  high: '#db7f7f',
   safe: '#89d089',
   moderate: '#dbdb81',
+  high: '#db7f7f',
   unknown: 'whitesmoke',
+}
+
+const RANGE = {
+  PP: {
+    safe: 140,
+    moderate: 180,
+  },
+  FASTING: {
+    safe: 80,
+    moderate: 130,
+  },
 }
 
 const Parent = styled.div`
@@ -65,6 +76,39 @@ const Reading = styled.div`
 `
 
 const Card = ({ date, time, reading, type }) => {
+  const getStatus = (reading, type) => {
+    let status = 'unknown'
+    switch (type.toUpperCase()) {
+      case 'PP':
+        if (reading <= RANGE['PP'].safe) {
+          status = 'safe'
+        } else if (
+          reading > RANGE['PP'].safe &&
+          reading <= RANGE['PP'].moderate
+        ) {
+          status = 'moderate'
+        } else {
+          status = 'high'
+        }
+        break
+      case 'FASTING':
+        if (reading <= RANGE['FASTING'].safe) {
+          status = 'safe'
+        } else if (
+          reading > RANGE['FASTING'].safe &&
+          reading <= RANGE['FASTING'].moderate
+        ) {
+          status = 'moderate'
+        } else {
+          status = 'high'
+        }
+        break
+      default:
+        status = 'unknown'
+    }
+    return status
+  }
+
   return (
     <Parent>
       <Left>
@@ -74,7 +118,7 @@ const Card = ({ date, time, reading, type }) => {
         </DateTime>
         <Lighter fs="0.9rem">({type})</Lighter>
       </Left>
-      <Right status="moderate">
+      <Right status={getStatus(reading, type)}>
         <Reading>{reading}</Reading>
       </Right>
     </Parent>

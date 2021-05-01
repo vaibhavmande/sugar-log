@@ -12,7 +12,7 @@ const AppContainer = () => {
   const [entries, setEntries] = useState([])
   return (
     <ColoredBackground fd="column" ai="center" jc="space-between" flex="1">
-      <Trend></Trend>
+      <Trend entries={entries}></Trend>
       <Readings entries={entries} setEntries={setEntries} />
     </ColoredBackground>
   )

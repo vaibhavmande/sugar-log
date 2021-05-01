@@ -25,6 +25,7 @@ const Action = ({ isEnabled = true, entries, setEntries }) => {
       <AddButton
         variant="contained"
         startIcon={<ControlPointIcon />}
+        color="primary"
         onClick={() => {
           setAddFormType('fasting')
           setOpen(!open)
@@ -35,6 +36,7 @@ const Action = ({ isEnabled = true, entries, setEntries }) => {
       </AddButton>
       <AddButton
         variant="contained"
+        color="primary"
         startIcon={<ControlPointIcon />}
         onClick={() => {
           setAddFormType('PP')

@@ -49,8 +49,11 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
   const [formDate, setFormDate] = React.useState(new Date())
 
   const helperText = (isError) =>
-    isError ? 'Incorrect entry' : `Add today's ${type ?? 'sugar'} entry`
-  const isValidEntry = (value) => value > 0 && Number.isInteger(value)
+    isError
+      ? 'Incorrect entry (0 < entry < 1000)'
+      : `Add today's ${type ?? 'sugar'} entry`
+  const isValidEntry = (value) =>
+    value > 0 && value < 1000 && Number.isInteger(value)
 
   const handleChange = (event) => {
     const value = event.target.value.trim()
@@ -139,6 +142,7 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
               />
               <AppButton
                 variant="contained"
+                color="primary"
                 disabled={!touched || isError}
                 onClick={handleSubmit}
               >

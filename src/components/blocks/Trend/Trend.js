@@ -51,13 +51,10 @@ const data = [
 const GraphContainer = styled(FlexContainer)`
   flex-basis: 30%;
   width: 100%;
-  /* padding: 0.5rem; */
   width: 100%;
   height: 300px;
   box-sizing: border-box;
-  /* background-clip: content-box; */
   background-color: #576be8;
-  /* border-radius: 1rem; */
 `
 
 const Trend = ({ readings }) => {
@@ -82,7 +79,6 @@ const Trend = ({ readings }) => {
             stroke="#ffc65d"
             fill="#576be8"
             activeDot={false}
-            // strokeWidth={3}
           ></Area>
           <Area
             type="monotone"
