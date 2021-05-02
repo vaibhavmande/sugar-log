@@ -1,23 +1,10 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
-
-const READINGS_COLORS = {
-  safe: '#89d089',
-  moderate: '#dbdb81',
-  high: '#db7f7f',
-  unknown: 'whitesmoke',
-}
-
-const RANGE = {
-  PP: {
-    safe: 140,
-    moderate: 180,
-  },
-  FASTING: {
-    safe: 80,
-    moderate: 130,
-  },
-}
+import styled from 'styled-components'
+import FlexContainer from '../../containers/FlexContainer'
+import Bigger from '../../elements/Bigger'
+import Smaller from '../../elements/Smaller'
+import Lighter from '../../elements/Lighter'
+import { READINGS_COLORS, RANGE } from '../../../constants'
 
 const Parent = styled.div`
   display: flex;
@@ -34,6 +21,7 @@ const Left = styled.div`
   justify-content: space-between;
   align-items: center;
 `
+
 const ColorCoded = styled.div`
   background-color: ${({ status }) =>
     READINGS_COLORS[status] ?? READINGS_COLORS['unknown']};
@@ -48,28 +36,6 @@ const Right = styled(ColorCoded)`
   border-radius: 0 0.4rem 0.4rem 0;
 `
 
-const DateTime = styled.div`
-  display: flex;
-  align-items: baseline;
-`
-const withMargin = css`
-  ${({ mr }) => mr && `margin-right: ${mr}`}
-`
-const withFontSize = css`
-  ${({ fs }) => fs && `font-size: ${fs}`}
-`
-
-const Bigger = styled.div`
-  font-size: 1.2rem;
-  ${withMargin}
-`
-const Smaller = styled.div`
-  font-size: 0.8rem;
-`
-const Lighter = styled.div`
-  font-weight: lighter;
-  ${withFontSize}
-`
 const Reading = styled.div`
   font-size: 2rem;
   text-shadow: 2px 0 3px rgba(0, 0, 0, 0, 2);
@@ -112,10 +78,10 @@ const Card = ({ date, time, reading, type }) => {
   return (
     <Parent>
       <Left>
-        <DateTime>
+        <FlexContainer ai="baseline">
           <Bigger mr="0.4rem">{date}</Bigger>
           <Smaller>{time}</Smaller>
-        </DateTime>
+        </FlexContainer>
         <Lighter fs="0.9rem">({type})</Lighter>
       </Left>
       <Right status={getStatus(reading, type)}>

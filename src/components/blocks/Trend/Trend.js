@@ -71,9 +71,7 @@ const Trend = ({ entries }) => {
             activeDot={false}
           />
           <Tooltip
-            label={'Tester'}
             labelFormatter={(name, payload) => {
-              console.log(payload, name)
               return payload[name]?.payload?.name ?? name
             }}
           />
