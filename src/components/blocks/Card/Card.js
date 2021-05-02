@@ -1,49 +1,92 @@
 import React from 'react'
 import styled from 'styled-components'
+import FlexContainer from '../../containers/FlexContainer'
+import Bigger from '../../elements/Bigger'
+import Smaller from '../../elements/Smaller'
+import Lighter from '../../elements/Lighter'
+import { READINGS_COLORS, RANGE } from '../../../constants'
 
 const Parent = styled.div`
+  display: flex;
   background-color: #f9fbff;
   border-radius: 0.4rem;
-  padding: 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+`
+
+const Left = styled.div`
+  flex-basis: 70%;
+  padding: 0.8rem 0;
   display: flex;
   flex-direction: column;
-`
-const Row = styled.div`
-  display: flex;
   justify-content: space-between;
   align-items: center;
 `
 
-const Above = styled(Row)`
-  margin-bottom: 0.6rem;
+const ColorCoded = styled.div`
+  background-color: ${({ status }) =>
+    READINGS_COLORS[status] ?? READINGS_COLORS['unknown']};
 `
 
-const Risk = styled.div`
-  font-weight: lighter;
-  color: gray;
+const Right = styled(ColorCoded)`
+  flex-grow: 1;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0.4rem 0.4rem 0;
 `
 
-const Color = styled.div`
-  border-radius: 50%;
-  background-color: green;
-  width: 1rem;
-  height: 1rem;
+const Reading = styled.div`
+  font-size: 2rem;
+  text-shadow: 2px 0 3px rgba(0, 0, 0, 0, 2);
 `
 
-const Card = () => {
+const Card = ({ date, time, reading, type }) => {
+  const getStatus = (reading, type) => {
+    let status = 'unknown'
+    switch (type.toUpperCase()) {
+      case 'PP':
+        if (reading <= RANGE['PP'].safe) {
+          status = 'safe'
+        } else if (
+          reading > RANGE['PP'].safe &&
+          reading <= RANGE['PP'].moderate
+        ) {
+          status = 'moderate'
+        } else {
+          status = 'high'
+        }
+        break
+      case 'FASTING':
+        if (reading <= RANGE['FASTING'].safe) {
+          status = 'safe'
+        } else if (
+          reading > RANGE['FASTING'].safe &&
+          reading <= RANGE['FASTING'].moderate
+        ) {
+          status = 'moderate'
+        } else {
+          status = 'high'
+        }
+        break
+      default:
+        status = 'unknown'
+    }
+    return status
+  }
+
   return (
     <Parent>
-      <Above className="row above">
-        <div className="date" style={{ fontWeight: 'bolder' }}>
-          12/12/12
-        </div>
-        <div className="reading">13 / 45 gmol/dl</div>
-      </Above>
-      <Row className="row below">
-        <Risk className="risk">risk</Risk>
-        <Color className="risk-color"></Color>
-      </Row>
+      <Left>
+        <FlexContainer ai="baseline">
+          <Bigger mr="0.4rem">{date}</Bigger>
+          <Smaller>{time}</Smaller>
+        </FlexContainer>
+        <Lighter fs="0.9rem">({type})</Lighter>
+      </Left>
+      <Right status={getStatus(reading, type)}>
+        <Reading>{reading}</Reading>
+      </Right>
     </Parent>
   )
 }

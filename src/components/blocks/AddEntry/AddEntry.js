@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import TextField from '@material-ui/core/TextField'
 import AppButton from '../../elements/AppButton'
 import DateFnsUtils from '@date-io/date-fns'
+import FlexContainer from '../../containers/FlexContainer'
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -26,7 +27,7 @@ const FlexModal = styled(Modal)`
 `
 
 const Heading = styled.h4`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `
 
 const StyledInput = styled(TextField)`
@@ -48,8 +49,11 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
   const [formDate, setFormDate] = React.useState(new Date())
 
   const helperText = (isError) =>
-    isError ? 'Incorrect entry' : `Add today's ${type ?? 'sugar'} entry`
-  const isValidEntry = (value) => value > 0 && Number.isInteger(value)
+    isError
+      ? 'Incorrect entry (0 < entry < 1000)'
+      : `Add today's ${type ?? 'sugar'} entry`
+  const isValidEntry = (value) =>
+    value > 0 && value < 1000 && Number.isInteger(value)
 
   const handleChange = (event) => {
     const value = event.target.value.trim()
@@ -107,41 +111,44 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
         }}
       >
         <Slide direction="up" in={open} mountOnEnter unmountOnExit>
-          <Paper>
-            <Heading>Add Entry</Heading>
-            <SpacedContainer>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  margin="normal"
-                  label="Select date"
-                  format="dd/MM/yyyy"
-                  value={formDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'select date',
-                  }}
-                />
-              </MuiPickersUtilsProvider>
-            </SpacedContainer>
-            <StyledInput
-              required
-              error={isError}
-              label="Enter sugar log"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              variant="outlined"
-              helperText={helperText(isError)}
-              onChange={handleChange}
-            />
-            <AppButton
-              variant="contained"
-              disabled={!touched || isError}
-              onClick={handleSubmit}
-            >
-              Submit
-            </AppButton>
+          <Paper style={{ display: 'flex', flexDirection: 'column' }}>
+            <FlexContainer fd="column">
+              <Heading>Add Entry</Heading>
+              <SpacedContainer>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    margin="normal"
+                    label="Select date"
+                    format="dd/MM/yyyy"
+                    value={formDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'select date',
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+              </SpacedContainer>
+              <StyledInput
+                required
+                error={isError}
+                label="Enter sugar log"
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                variant="outlined"
+                helperText={helperText(isError)}
+                onChange={handleChange}
+              />
+              <AppButton
+                variant="contained"
+                color="primary"
+                disabled={!touched || isError}
+                onClick={handleSubmit}
+              >
+                Submit
+              </AppButton>
+            </FlexContainer>
           </Paper>
         </Slide>
       </FlexModal>

@@ -7,6 +7,13 @@ import AppButton from '../../elements/AppButton'
 
 const AddButton = styled(AppButton)`
   margin: 0 1rem;
+  flex-basis: 50%;
+`
+const ButtonContainer = styled(FlexContainer)`
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
 `
 
 const Action = ({ isEnabled = true, entries, setEntries }) => {
@@ -14,10 +21,11 @@ const Action = ({ isEnabled = true, entries, setEntries }) => {
   const [addFormType, setAddFormType] = React.useState(null)
 
   return (
-    <FlexContainer ai="center" jc="center">
+    <ButtonContainer ai="center" jc="center">
       <AddButton
         variant="contained"
         startIcon={<ControlPointIcon />}
+        color="primary"
         onClick={() => {
           setAddFormType('fasting')
           setOpen(!open)
@@ -28,6 +36,7 @@ const Action = ({ isEnabled = true, entries, setEntries }) => {
       </AddButton>
       <AddButton
         variant="contained"
+        color="primary"
         startIcon={<ControlPointIcon />}
         onClick={() => {
           setAddFormType('PP')
@@ -44,7 +53,7 @@ const Action = ({ isEnabled = true, entries, setEntries }) => {
         entries={entries}
         setEntries={setEntries}
       />
-    </FlexContainer>
+    </ButtonContainer>
   )
 }
 
