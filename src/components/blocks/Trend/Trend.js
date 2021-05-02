@@ -3,51 +3,6 @@ import { Tooltip, AreaChart, Area, ResponsiveContainer } from 'recharts'
 import FlexContainer from '../../containers/FlexContainer'
 import styled from 'styled-components'
 
-const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-]
-
 const GraphContainer = styled(FlexContainer)`
   flex-basis: 30%;
   width: 100%;
@@ -57,14 +12,40 @@ const GraphContainer = styled(FlexContainer)`
   background-color: #576be8;
 `
 
-const Trend = ({ readings }) => {
+const Trend = ({ entries }) => {
+  let byDate = {}
+  let graphData = []
+
+  entries.forEach((reading) => {
+    if (byDate[reading.date]) {
+      byDate[reading.date].push(reading)
+    } else {
+      byDate[reading.date] = []
+      byDate[reading.date].push(reading)
+    }
+  })
+
+  for (let date in byDate) {
+    const fastingArray =
+      byDate[date].find((value) => value.type == 'fasting') ?? []
+    const ppArray = byDate[date].find((value) => value.type == 'PP') ?? []
+
+    graphData.push({
+      name: date,
+      fasting: fastingArray?.value ?? 0,
+      PP: ppArray?.value ?? 0,
+    })
+  }
+
+  graphData.sort((prev, next) => new Date(prev.name) - new Date(next.name))
+
   return (
     <GraphContainer at="center" jc="center">
       <ResponsiveContainer>
         <AreaChart
           width={500}
           height={100}
-          data={data}
+          data={graphData}
           margin={{
             top: 10,
             right: 0,
@@ -74,7 +55,7 @@ const Trend = ({ readings }) => {
         >
           <Area
             type="monotone"
-            dataKey="uv"
+            dataKey="fasting"
             stackId="1"
             stroke="#ffc65d"
             fill="#576be8"
@@ -82,14 +63,20 @@ const Trend = ({ readings }) => {
           ></Area>
           <Area
             type="monotone"
-            dataKey="pv"
-            stackId="1"
+            dataKey="PP"
+            stackId="2"
             stroke="#ffc65d"
             fill="#576be8"
             strokeWidth={3}
             activeDot={false}
           />
-          <Tooltip />
+          <Tooltip
+            label={'Tester'}
+            labelFormatter={(name, payload) => {
+              console.log(payload, name)
+              return payload[name]?.payload?.name ?? name
+            }}
+          />
         </AreaChart>
       </ResponsiveContainer>
     </GraphContainer>
