@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/sugar-log/static/css/main.9db1a663.chunk.css",
+    "main.js": "/sugar-log/static/js/main.b5e3a190.chunk.js",
+    "main.js.map": "/sugar-log/static/js/main.b5e3a190.chunk.js.map",
+    "runtime-main.js": "/sugar-log/static/js/runtime-main.aaac7a46.js",
+    "runtime-main.js.map": "/sugar-log/static/js/runtime-main.aaac7a46.js.map",
+    "static/js/2.67bdb71e.chunk.js": "/sugar-log/static/js/2.67bdb71e.chunk.js",
+    "static/js/2.67bdb71e.chunk.js.map": "/sugar-log/static/js/2.67bdb71e.chunk.js.map",
+    "static/js/3.ab453a07.chunk.js": "/sugar-log/static/js/3.ab453a07.chunk.js",
+    "static/js/3.ab453a07.chunk.js.map": "/sugar-log/static/js/3.ab453a07.chunk.js.map",
+    "index.html": "/sugar-log/index.html",
+    "static/css/main.9db1a663.chunk.css.map": "/sugar-log/static/css/main.9db1a663.chunk.css.map",
+    "static/js/2.67bdb71e.chunk.js.LICENSE.txt": "/sugar-log/static/js/2.67bdb71e.chunk.js.LICENSE.txt",
+    "static/media/meditate.4ce7688b.svg": "/sugar-log/static/media/meditate.4ce7688b.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aaac7a46.js",
+    "static/js/2.67bdb71e.chunk.js",
+    "static/css/main.9db1a663.chunk.css",
+    "static/js/main.b5e3a190.chunk.js"
+  ]
+}
