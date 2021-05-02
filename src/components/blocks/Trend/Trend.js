@@ -27,8 +27,8 @@ const Trend = ({ entries }) => {
 
   for (let date in byDate) {
     const fastingArray =
-      byDate[date].find((value) => value.type == 'fasting') ?? []
-    const ppArray = byDate[date].find((value) => value.type == 'PP') ?? []
+      byDate[date].find((value) => value.type === 'fasting') ?? []
+    const ppArray = byDate[date].find((value) => value.type === 'PP') ?? []
 
     graphData.push({
       name: date,

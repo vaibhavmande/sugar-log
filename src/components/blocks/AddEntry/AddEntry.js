@@ -129,6 +129,7 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
                 </MuiPickersUtilsProvider>
               </SpacedContainer>
               <StyledInput
+                autoFocus={true}
                 required
                 error={isError}
                 label="Enter sugar log"
