@@ -26,10 +26,14 @@ This will run the app in development mode at port `3000`
 ## Deploy
 
 ```bash
-yarn build
+yarn deploy
 ```
 
-This will build and export files into `build` folder.
+This will build and export files into `build` folder. As well as move them to `gh-pages` branch
+
+## Demo
+
+Site is deployed and live at [sugar-log](https://vaibhavmande.com/sugar-log/ 'Sugar Log')
 
 ## Screenshot
 
