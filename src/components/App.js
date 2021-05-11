@@ -24,6 +24,7 @@ const App = () => {
             rel="noreferrer noopener"
             href="https://github.com/vaibhavmande/sugar-log"
             target="_blank"
+            data-testid="header"
           >
             Sugar log
           </Link>

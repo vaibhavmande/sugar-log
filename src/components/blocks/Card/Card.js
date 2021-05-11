@@ -82,9 +82,11 @@ const Card = ({ date, time, reading, type }) => {
           <Bigger mr="0.4rem">{date}</Bigger>
           <Smaller>{time}</Smaller>
         </FlexContainer>
-        <Lighter fs="0.9rem">({type})</Lighter>
+        <Lighter fs="0.9rem" data-testid="type">
+          ({type})
+        </Lighter>
       </Left>
-      <Right status={getStatus(reading, type)}>
+      <Right data-testid="status" status={getStatus(reading, type)}>
         <Reading>{reading}</Reading>
       </Right>
     </Parent>
