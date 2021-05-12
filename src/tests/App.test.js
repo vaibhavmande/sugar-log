@@ -10,7 +10,6 @@ describe('App should render', () => {
 
 describe('Links', () => {
   test('Should contain header link', () => {
-    const expected = 'https://github.com/vaibhavmande/sugar-log'
     render(<App />)
 
     expect(screen.getByTestId('header')).toBeInTheDocument()

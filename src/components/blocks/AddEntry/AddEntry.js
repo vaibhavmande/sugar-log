@@ -111,7 +111,10 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
         }}
       >
         <Slide direction="up" in={open} mountOnEnter unmountOnExit>
-          <Paper style={{ display: 'flex', flexDirection: 'column' }}>
+          <Paper
+            style={{ display: 'flex', flexDirection: 'column' }}
+            data-testid="add-form-parent"
+          >
             <FlexContainer fd="column">
               <Heading>Add Entry</Heading>
               <SpacedContainer>
@@ -137,6 +140,11 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                InputProps={{
+                  inputProps: {
+                    'data-testid': 'form-input',
+                  },
+                }}
                 variant="outlined"
                 helperText={helperText(isError)}
                 onChange={handleChange}
@@ -146,6 +154,7 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
                 color="primary"
                 disabled={!touched || isError}
                 onClick={handleSubmit}
+                data-testid="add-button"
               >
                 Submit
               </AppButton>
