@@ -1,4 +1,4 @@
-import AppBar from '@material-ui/core/AppBar'
+import AppBar from '@mui/material/AppBar'
 import styled from 'styled-components'
 
 const Header = styled(AppBar)`

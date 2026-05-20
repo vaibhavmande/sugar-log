@@ -4,35 +4,27 @@
   "homepage": "https://vaibhavmande.com/sugar-log",
   "private": true,
   "dependencies": {
-    "@date-io/date-fns": "1.x",
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/pickers": "^3.3.10",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "date-fns": "^2.21.1",
-    "gh-pages": "^3.1.0",
-    "hosted-git-info": "^4.0.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "recharts": "^2.0.9",
-    "styled-components": "^5.2.3",
-    "web-vitals": "^1.0.1"
+    "@date-io/date-fns": "^3.0.0",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@mui/icons-material": "^6.4.8",
+    "@mui/material": "^6.4.8",
+    "@mui/x-date-pickers": "^7.28.3",
+    "date-fns": "^4.1.0",
+    "gh-pages": "^6.3.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "recharts": "^2.15.3",
+    "styled-components": "^6.1.18",
+    "web-vitals": "^4.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "deploy": "gh-pages -d dist"
   },
   "browserslist": {
     "production": [
@@ -46,10 +38,13 @@
       "last 1 safari version"
     ]
   },
-  "resolutions": {
-    "is-svg": "^4.0.0"
-  },
   "devDependencies": {
-    "react-scripts": "4.0.3"
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "jsdom": "^26.1.0",
+    "vite": "^6.3.5",
+    "vitest": "^3.1.4"
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import FlexContainer from '../../containers/FlexContainer'
-import ControlPointIcon from '@material-ui/icons/ControlPoint'
+import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import AddEntry from '../AddEntry/AddEntry'
 import AppButton from '../../elements/AppButton'
 

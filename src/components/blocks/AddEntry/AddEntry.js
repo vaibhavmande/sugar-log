@@ -1,16 +1,14 @@
 import React from 'react'
-import Modal from '@material-ui/core/Modal'
-import Backdrop from '@material-ui/core/Backdrop'
-import Slide from '@material-ui/core/Slide'
+import Modal from '@mui/material/Modal'
+import Backdrop from '@mui/material/Backdrop'
+import Slide from '@mui/material/Slide'
 import styled from 'styled-components'
-import TextField from '@material-ui/core/TextField'
+import TextField from '@mui/material/TextField'
 import AppButton from '../../elements/AppButton'
-import DateFnsUtils from '@date-io/date-fns'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
 import FlexContainer from '../../containers/FlexContainer'
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 
 const Paper = styled.div`
   background-color: #fff;
@@ -105,9 +103,9 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: { timeout: 500 },
         }}
       >
         <Slide direction="up" in={open} mountOnEnter unmountOnExit>
@@ -118,18 +116,14 @@ export default function AddEntry({ open, setOpen, type, entries, setEntries }) {
             <FlexContainer fd="column">
               <Heading>Add Entry</Heading>
               <SpacedContainer>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    margin="normal"
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
                     label="Select date"
                     format="dd/MM/yyyy"
                     value={formDate}
                     onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      'aria-label': 'select date',
-                    }}
                   />
-                </MuiPickersUtilsProvider>
+                </LocalizationProvider>
               </SpacedContainer>
               <StyledInput
                 autoFocus={true}

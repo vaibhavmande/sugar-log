@@ -1,6 +1,6 @@
 import { screen, render } from '@testing-library/react'
 import App from '../components/App'
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom/vitest'
 
 describe('App should render', () => {
   test('render', () => {

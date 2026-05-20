@@ -1,5 +1,4 @@
 import React from 'react'
-import { StylesProvider } from '@material-ui/core/styles'
 import AppContainer from './blocks/AppContainer/AppContainer'
 import Header from './elements/Header'
 import styled from 'styled-components'
@@ -18,19 +17,17 @@ const Link = styled.a`
 const App = () => {
   return (
     <>
-      <StylesProvider injectFirst>
-        <Header position="static">
-          <Link
-            rel="noreferrer noopener"
-            href="https://github.com/vaibhavmande/sugar-log"
-            target="_blank"
-            data-testid="header"
-          >
-            Sugar log
-          </Link>
-        </Header>
-        <AppContainer />
-      </StylesProvider>
+      <Header position="static">
+        <Link
+          rel="noreferrer noopener"
+          href="https://github.com/vaibhavmande/sugar-log"
+          target="_blank"
+          data-testid="header"
+        >
+          Sugar log
+        </Link>
+      </Header>
+      <AppContainer />
     </>
   )
 }

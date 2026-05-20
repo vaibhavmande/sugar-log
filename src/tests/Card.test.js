@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react'
 import Card from '../components/blocks/Card/Card'
 import { READINGS_COLORS } from '../constants'
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom/vitest'
 
 const props = {
   date: '11/5/2021',
