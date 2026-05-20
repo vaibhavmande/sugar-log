@@ -1,7 +1,9 @@
 <h1 align="center">Log and monitor daily glucose levels</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB"/>
+  <img src="https://img.shields.io/badge/React_19-20232A?style=flat&logo=react&logoColor=61DAFB"/>
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MUI_v6-007FFF?style=flat&logo=mui&logoColor=white"/>
   <img src="https://img.shields.io/badge/styled--components-DB7093?style=flat&logo=styled-components&logoColor=white"/>
   <img src="https://img.shields.io/github/languages/top/vaibhavmande/sugar-log"/>
   <a href="https://www.linkedin.com/in/vaibhavmande/" title="linkedin"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white"></a>
@@ -18,18 +20,25 @@ The app helps keep track of glucose levels. There are colour-coded values for ea
 Download the code and from the root run
 
 ```bash
-yarn start
+npm install
+npm start
 ```
 
-This will run the app in development mode at port `3000`
+This will run the app in development mode at [http://localhost:5173/sugar-log/](http://localhost:5173/sugar-log/)
+
+## Test
+
+```bash
+npm test
+```
 
 ## Deploy
 
 ```bash
-yarn deploy
+npm run deploy
 ```
 
-This will build and export files into `build` folder. As well as move them to `gh-pages` branch
+This will build and export files into the `dist` folder and push them to the `gh-pages` branch
 
 ## Demo
 
